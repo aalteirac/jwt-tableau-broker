@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 });
 
 //JUST FOR TEST PURPOSE, REMOVE IT ASAP :-)
-app.post('/gimmeJWT',(req,res)=>{
+app.get('/gimmeJWT',(req,res)=>{
   const payload = {
       ofcourse:  true
     };
@@ -81,6 +81,7 @@ function getTabTicket(tableauServer, username, site){
     let req = proto.request({
         method: 'POST',
         hostname: url.hostname,
+        port:url.port,
         path: '/trusted',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }, function (response) {
