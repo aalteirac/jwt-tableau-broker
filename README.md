@@ -19,9 +19,7 @@ GET http://tabIP:3000/api/getTicket?username=userName
 
 HEADERS MUST BE:
 
-"Content-Type":"application/json"
-
-"access-token":JWT-TOKEN-VALUE
+"access-token":THE-JWT-TOKEN
 
 ### INSTALL
 Run the nodejs server:
