@@ -8,7 +8,7 @@ This broker is secured with JWT, there's a sample implementation but can be mana
 ## USAGE
 
 Generate a JWT (here valid for 1 year but you can tweak) 
-##!!!!WARNING!!!!! OF COURSE YOU'LL HAVE TO REMOVE THIS ENDPOINT IN REAL LIFE :-)
+## !!!!WARNING!!!!! OF COURSE YOU'LL HAVE TO REMOVE THIS ENDPOINT IN REAL LIFE :-)
 
 POST http://<tabIP>:3000/gimmeJWT
 
