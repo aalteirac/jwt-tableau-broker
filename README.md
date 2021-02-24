@@ -15,13 +15,13 @@ POST http://<tabIP>:3000/gimmeJWT
 
 Obtain  a ticket:
 
-GET http://<tabIP>:3000/api/getTicket?username=<userName>
+GET http://tabIP:3000/api/getTicket?username=userName
 
 HEADERS MUST BE:
 
 "Content-Type":"application/json"
 
-"access-token":<JWT>
+"access-token":JWT-TOKEN-VALUE
 
 ### INSTALL
 Run the nodejs server:
