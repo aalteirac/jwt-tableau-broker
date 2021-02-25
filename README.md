@@ -17,6 +17,8 @@ Use your own system or pick this one for example: [jwtgen-tableau-broker](https:
 
 Obtain  a ticket:
 
+**First be sure you have set the Tableau Server URL correctly in the config.js. Do not forget the port if not 80 or 433 :-)**
+
 GET http://tabIP:3000/api/getTicket
 
 HEADERS MUST BE:
