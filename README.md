@@ -16,6 +16,8 @@ Body must be encoded application/x-www-form-urlencoded and contains "username" k
 
 ex: username:alteirac
 
+![ScreenShot](https://raw.githubusercontent.com/aalteirac/jwt-tableau-broker/master/one.png)
+
 The user name is then signed in the JWT payload.
 
 Obtain  a ticket:
@@ -25,6 +27,8 @@ GET http://tabIP:3000/api/getTicket
 HEADERS MUST BE:
 
 "access-token":THE-JWT-TOKEN
+
+![ScreenShot](https://raw.githubusercontent.com/aalteirac/jwt-tableau-broker/master/two.png)
 
 ### INSTALL
 Run the nodejs server:
