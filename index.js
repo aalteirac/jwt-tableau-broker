@@ -1,9 +1,10 @@
 const express = require('express'),
 bodyParser = require('body-parser'),
 jwt    = require('jsonwebtoken'),
-http = require('http');
-https = require('https');
-querystring = require('querystring');
+http = require('http'),
+fs = require('fs'),
+https = require('https'),
+querystring = require('querystring'),
 config = require('./config'),
 
 app = express(); 
@@ -19,7 +20,8 @@ app.use('/api', authRoutes);
 authRoutes.use((req, res, next) =>{
     var token = req.headers['access-token'];
     if (token) {
-      jwt.verify(token, app.get('Secret'), (err, decoded) =>{      
+      var cert = fs.readFileSync('jwtbroker.key.pub'); 
+      jwt.verify(token, cert, (err, decoded) =>{      
         if (err) {
           return res.json({ success: false, message: 'Failed to authenticate token.' });    
         } else {
@@ -43,24 +45,31 @@ app.get('/', function(req, res) {
 });
 
 //JUST FOR TEST PURPOSE, REMOVE IT ASAP :-)
-app.get('/gimmeJWT',(req,res)=>{
+app.post('/gimmeJWT',(req,res)=>{
+  var privateKey = fs.readFileSync('jwtbroker.key');
+  var id=req.body.username;
+  if(!id){
+    res.json({error: "no valid username key in body request, check content-type is application/x-www-form-urlencoded"});
+    return
+  }
   const payload = {
-      ofcourse:  true
+      userID:  id
     };
-  var token = jwt.sign(payload, app.get('Secret'), {
-    expiresIn: "365d"
+  var token = jwt.sign(payload, privateKey, {
+    expiresIn: "365d",
+    algorithm:'RS256'
   });
   res.json({
     token: token
   });
 })
+
 authRoutes.get('/getTicket',async (req,res)=>{
-  if(req.query.username){
-    var tck=await getTabTicket(config.tabserver,req.query.username);
+  try {
+    var tck=await getTabTicket(config.tabserver,req.decoded.userID);
     res.json(tck)
-  }
-  else{
-    res.send("No username query param defined, come on... how can I request a session if I don't have the user name....");
+  } catch (error) {
+    res.send(error)
   }
 })
 
