@@ -5,6 +5,11 @@ A little sample showing a ticket broker designed to be hosted on Tableau Server 
 Can be useful in cloud env where all IP's are dynamic.
 This broker is secured with JWT, there's a sample implementation but can be managed separately of course.
 
+JWT is signed with private key, JWT is decode by the broker using only the public key.
+
+In real life the web application will generate the token (or other dedicated service), only part owning the private key.
+JWT consumers, here the broker, only need the public key to validate and decode the JWT.
+
 ## USAGE
 
 Generate a JWT (here valid for 1 year but you can tweak) 
