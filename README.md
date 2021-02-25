@@ -5,25 +5,15 @@ A little sample showing a ticket broker designed to be hosted on Tableau Server 
 Can be useful in cloud env where all IP's are dynamic.
 This broker is secured with JWT, there's a sample implementation but can be managed separately of course.
 
-JWT is signed with private key, JWT is decode by the broker using only the public key.
+JWT is signed with private key by external system (find here a sample [jwtgen-tableau-broker](https://github.com/aalteirac/jwtgen-tableau-broker)), JWT is decoded by the broker using only the public key.
 
 In real life the web application will generate the token (or other dedicated service), only part owning the private key.
 JWT consumers, here the broker, only need the public key to validate and decode the JWT.
 
 ## USAGE
 
-Generate a JWT (here valid for 1 year but you can tweak) 
-## !!!!WARNING!!!!! OF COURSE YOU'LL HAVE TO REMOVE THIS ENDPOINT IN REAL LIFE :-)
-
-POST http://tabIP:3000/gimmeJWT
-
-Body must be encoded application/x-www-form-urlencoded and contains "username" key with the user name as value
-
-ex: username:alteirac
-
-![ScreenShot](https://raw.githubusercontent.com/aalteirac/jwt-tableau-broker/master/one.png)
-
-The user name is then signed in the JWT payload.
+Generate a JWT 
+Use your own system or pick this one for example: [jwtgen-tableau-broker](https://github.com/aalteirac/jwtgen-tableau-broker)
 
 Obtain  a ticket:
 

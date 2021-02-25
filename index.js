@@ -42,26 +42,6 @@ app.get('/', function(req, res) {
   res.send('App is running on http://localhost:3000/');
 });
 
-//JUST FOR TEST PURPOSE, REMOVE IT ASAP :-)
-app.post('/gimmeJWT',(req,res)=>{
-  var privateKey = fs.readFileSync('jwtbroker.key');
-  var id=req.body.username;
-  if(!id){
-    res.json({error: "no valid username key in body request, check content-type is application/x-www-form-urlencoded"});
-    return
-  }
-  const payload = {
-      userID:  id
-    };
-  var token = jwt.sign(payload, privateKey, {
-    expiresIn: "365d",
-    algorithm:'RS256'
-  });
-  res.json({
-    token: token
-  });
-})
-
 authRoutes.get('/getTicket',async (req,res)=>{
   try {
     var tck=await getTabTicket(config.tabserver,req.decoded.userID);
