@@ -9,8 +9,6 @@ config = require('./config'),
 
 app = express(); 
 
-app.set('Secret', config.secret);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());

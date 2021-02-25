@@ -12,10 +12,15 @@ Generate a JWT (here valid for 1 year but you can tweak)
 
 POST http://tabIP:3000/gimmeJWT
 
+Body must be encoded application/x-www-form-urlencoded and contains "username" key with the user name as value
+
+ex: username:alteirac
+
+The user name is then signed in the JWT payload.
 
 Obtain  a ticket:
 
-GET http://tabIP:3000/api/getTicket?username=userName
+GET http://tabIP:3000/api/getTicket
 
 HEADERS MUST BE:
 
