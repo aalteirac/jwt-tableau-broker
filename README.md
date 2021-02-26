@@ -10,6 +10,8 @@ JWT is signed with private key by external system (find here a sample [jwtgen-ta
 In real life the web application will generate the token (or other dedicated service), only part owning the private key.
 JWT consumers, here the broker, only need the public key to validate and decode the JWT.
 
+Learn about the concept here: [Tableau Broker](https://anthony-alteirac.medium.com/tableau-trusted-authentication-the-ticket-broker-cloud-friendly-709789942aa3)
+
 ## USAGE
 
 Generate a JWT 
